@@ -1,0 +1,25 @@
+{
+  "name": "daf-metamask-snap",
+  "version": "0.0.1",
+  "description": "DAF Metamask Snaps Plugin",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Simonas Karuzas <simonas.karuzas@consensys.net>",
+  "license": "Apache-2",
+  "web3Wallet": {
+    "bundle": {
+      "local": "dist/bundle.js",
+      "url": "http://localhost:8081/dist/bundle.js"
+    },
+    "initialPermissions": {
+      "confirm": {}
+    }
+  },
+  "dependencies": {
+    "elliptic": "^6.5.2",
+    "ethers": "^4.0.40",
+    "js-sha256": "^0.9.0"
+  }
+}

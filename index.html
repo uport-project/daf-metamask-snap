@@ -1,0 +1,70 @@
+<!doctype html>
+
+<html>
+
+  </head>
+    <title>DAF Metamask plugin</title>
+  </head>
+
+  <body>
+    <h1>DAF Metamask plugin</h1>
+
+    <br/>
+
+    <button class="connect">Connect</button>
+    <button class="getDid">Get DID</button>
+    <button class="sign">Sign</button>
+  </body>
+
+  <script>
+
+    // we identify the Snap by the location of its package.json file
+    const snapId = new URL('package.json', window.location.href).toString()
+
+    const connectButton = document.querySelector('button.connect')
+    const getDidButton = document.querySelector('button.getDid')
+    const signButton = document.querySelector('button.sign')
+
+    connectButton.addEventListener('click', connect)
+    getDidButton.addEventListener('click', getDid)
+    signButton.addEventListener('click', sign)
+
+    // here we get permissions to interact with and install the plugin
+    async function connect () {
+      await ethereum.send({
+        method: 'wallet_enable',
+        params: [{
+          wallet_plugin: { [snapId]: {} },
+        }]
+      })
+    }
+
+    async function getDid () {
+      const did = await ethereum.send({
+          method: 'wallet_invokePlugin',
+          params: [snapId, {
+            method: 'did'
+          }]
+        })
+      alert('Your DID: ' + did)
+    }
+
+    async function sign () {
+      try {
+        const response = await ethereum.send({
+          method: 'wallet_invokePlugin',
+          params: [snapId, {
+            method: 'sign',
+            params: ['test']
+          }]
+        })
+        alert(JSON.stringify(response))
+      } catch (err) {
+        console.error(err)
+        alert('Problem happened: ' + err.message || err)
+      }
+    }
+
+  </script>
+
+</html>
