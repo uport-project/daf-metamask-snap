@@ -31,6 +31,9 @@ wallet.registerRpcMessageHandler(async (originString, requestObject) => {
     case 'did':
       return 'did:ethr:' + ethWallet.address
       
+    case 'address':
+      return ethWallet.address
+
     case 'sign':
       const confirmed = await wallet.send({
         method: 'confirm',

@@ -8,5 +8,5 @@ https://github.com/MetaMask/metamask-snaps-beta/wiki
 npm i -g snaps-cli
 npm i
 snap build
-snap serve
+snap serve -p 8082
 ```
