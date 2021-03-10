@@ -18,7 +18,7 @@
     }
   },
   "dependencies": {
-    "elliptic": "^6.5.2",
+    "elliptic": "^6.5.4",
     "ethers": "^4.0.40",
     "js-sha256": "^0.9.0"
   }
